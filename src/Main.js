@@ -3,7 +3,8 @@ var lastRealEvent = null;
 var spinnerVisible = false;
 
 function onReady() {
-		createSpinner();
+	createSpinner();
+	updateNewsItems();
 	setInterval(updateNewsItems, 30000);
 }
 
