@@ -3,6 +3,7 @@
 <head>
 	<title>UW News</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/spinner.css">
 </head>
 <body>
 	<div class="container">
@@ -29,28 +30,34 @@
 				</div><!--/.nav-collapse -->
 			</div><!--/.container-fluid -->
 		</div>
-		<button type="button" class="btn btn-primary">Simulate Event</button>
 
+		<div class="text-center">
+		<div id="spinner-container"></div>
+		<br><br>
+		<button type="button" class="btn btn-primary" style="display:none">Simulate Event</button>
+		</div>
+		<br><br>
 		<div class="panel-container"></div>
+
 
 
 
 	</div>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="javascript/bootstrap.js"></script>
-	<script>
-
+	<script src="src/bootstrap.min.js"></script>
+	<script src="src/Main.js"></script>
+	<script type="text/javascript">
 	$(document).ready(function() {
+		onReady();
 
-		$.get("https://api.uwaterloo.ca/v2/news.json?key=f37a2830b2b3e202ce41630ba994ba0d", function(data) {
-			var arr = data.data;
-			for(var index in arr){
-			$(".panel-container").append('<div class="panel panel-default"><div class="panel-heading">' + arr[index].title + '</div><div class="panel-body"><a href="'+ arr[index].link +'">Click here for details</a></div></div>');
-		}
+		$(".btn-primary").click(function(){
+			simulateEvent();
 		});
 	});
-		
 	</script>
+
+
+
 
 
 
