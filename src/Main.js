@@ -5,13 +5,15 @@ var spinnerVisible = false;
 function onReady() {
 	createSpinner();
 	updateNewsItems();
-	setInterval(updateNewsItems, 30000);
+	setInterval(updateNewsItems, 5000);
 }
 
 function updateNewsItems(){
+	console.log("News Data being fetched...");
 		getNewsData(function(data) {
 
 		if(currentNewsItems === null){
+			console.log("First Time being called after page load.");
 			currentNewsItems = data;
 			lastRealEvent = data[0];
 			$(".btn-primary").show("slow");
@@ -19,10 +21,12 @@ function updateNewsItems(){
 				$(".panel-container").append('<div class="panel panel-default"><div class="panel-heading">' + data[index].title + '</div><div class="panel-body"><a href="'+ data[index].link +'">Click here for details</a></div></div>');
 			}
 		}else if(lastRealEvent.id !== data[0].id){
+			console.log("There's a new news item.");
 			currentNewsItems.unshift(data[0]);
 			lastRealEvent = data[0];
 			drawNewNewsItem();
 		}else{
+			console.log("No new news items.");
 			return;
 		}
 	});
